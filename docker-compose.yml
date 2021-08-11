@@ -1,0 +1,22 @@
+version: "3.0"
+services: 
+  python:
+    build:
+      context: ./Python
+    container_name: python
+    volumes:
+      - ./Python/Share/:/app
+    restart: always
+    tty: true
+    ports:
+      - 8000:8000
+  react:
+    build:
+      context: ./React
+    container_name: react
+    volumes:
+     - ./React/app/:/usr/src/app
+    command: sh -c "cd react-sample && yarn start"
+    ports:
+     - 8080:3000
+     - 5000:5000
